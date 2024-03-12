@@ -22,6 +22,8 @@ public class LoginServlet  extends HttpServlet  {
 	 */
 	private static final long serialVersionUID = 1L;
 		private static final String query = "SELECT * FROM CLIENT WHERE PATIENT_EMAIL = ? and PATIENT_PASSWORD = ?";
+
+		
 		protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 			PrintWriter pw = res.getWriter();
 			res.setContentType("text/html");
@@ -52,11 +54,13 @@ public class LoginServlet  extends HttpServlet  {
 					java.sql.ResultSet rs = ps.executeQuery();
 					 if (rs.next()) {
 					        // Login successful - Redirect to a welcome page or dashboard
+							PublicVars.CurrentUserEmail = email;
 						 	res.sendRedirect("user_dashboard.jsp");
 					        // ... (code to redirect or store user information in session)
 					      } else {
 					        pw.println("<h2>Invalid email or password. Please try again.</h2>");
 					      }
+						  
 
 					
 					

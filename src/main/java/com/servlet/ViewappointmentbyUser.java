@@ -12,15 +12,18 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+
+
 	@WebServlet("/UserAppointment")
 	public class ViewappointmentbyUser extends HttpServlet {
-		private static final String query = "SELECT APPOINTMENT_ID, PATIENT_NAME ,PATIENT_EMAIL,DOCTOR_NAME, APPOINTMENT_DATE,APPOINTMENT_TYPE,DESCRIPTION FROM CLIENT";
+		private static final String query = "SELECT APPOINTMENT_ID, PATIENT_NAME ,PATIENT_EMAIL,DOCTOR_NAME, APPOINTMENT_DATE,APPOINTMENT_TYPE,DESCRIPTION FROM CLIENT WHERE PATIENT_EMAIL = ?";
 		@Override
 		protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 			PrintWriter pw = res.getWriter();
 			res.setContentType("text/html");
 			
 			//LOAD JDBC 
+
 			try {
 				Class.forName("org.apache.derby.jdbc.ClientDriver");	
 			} catch (ClassNotFoundException e) {
@@ -34,7 +37,10 @@ import jakarta.servlet.http.HttpServletResponse;
 			//generate the conn
 			try(Connection con = DriverManager.getConnection(host, uName, uPass);
 
-					PreparedStatement ps = con.prepareStatement(query);){
+				PreparedStatement ps = con.prepareStatement(query);){
+
+					ps.setString(2, PublicVars.CurrentUserEmail);
+					
 				java.sql.ResultSet rs = ps.executeQuery();
 				pw.println("<table class='table table-striped' align='center'>");
 				pw.println("<tr>");

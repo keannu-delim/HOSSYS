@@ -41,19 +41,24 @@ import jakarta.servlet.http.HttpServletResponse;
 
 					ps.setString(2, PublicVars.CurrentUserEmail);
 					
+					pw.println("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>");
+
 				java.sql.ResultSet rs = ps.executeQuery();
-				pw.println("<table class='table table-striped' align='center'>");
-				pw.println("<tr>");
-				pw.println("<th>Appointment Id</th>");
-				pw.println("<th>Patient Name</th>");
-				pw.println("<th>Patient Email</th>");
-				pw.println("<th>Doctor Name</th>");
-				pw.println("<th>Appointment Date</th>");
-				pw.println("<th>Appointment Type</th>");
-				pw.println("<th>Description</th>");
-				pw.println("<th>EDIT</th>");
-				pw.println("<th>DELETE</th>");
-				pw.println("<tr>");
+				 pw.println("<table class='table table-striped table-hover table-bordered table-responsive'>");
+					pw.println("<thead>");
+					pw.println("<tr>");
+					pw.println("<th>Appointment Id</th>");
+					pw.println("<th>Patient Name</th>");
+					pw.println("<th>Patient Email</th>");
+					pw.println("<th>Doctor Name</th>");
+					pw.println("<th>Appointment Date</th>");
+					pw.println("<th>Appointment Type</th>");
+					pw.println("<th>Description</th>");
+					pw.println("<th>EDIT</th>");
+					pw.println("<th>DELETE</th>");
+					pw.println("</tr>");
+					pw.println("</thead>");
+					pw.println("<tbody>");
 				while(rs.next()) {
 					pw.println("<tr>");
 					pw.println("<td>" +rs.getInt(1)+"</td>");
@@ -67,11 +72,12 @@ import jakarta.servlet.http.HttpServletResponse;
 					pw.println("<td><a href='deleteurl?id="+rs.getInt(1)+"'</a>DELETE</td>");
 					pw.println("<tr>");
 				}
+				pw.println("</tbody>");
 				pw.println("</table>");
 				
 			}catch(Exception e) {
 				e.printStackTrace();
-				pw.println("<h1>"+ e.getMessage()+ "</h2>");
+				pw.println("<h2>"+ e.getMessage()+ "</h2>");
 			}
 			pw.print("<a href='index.jsp'>Login</a>");
 			pw.println("<br>");

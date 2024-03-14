@@ -60,9 +60,6 @@ public class LoginServlet  extends HttpServlet  {
 					      } else {
 					        pw.println("<h2>Invalid email or password. Please try again.</h2>");
 					      }
-						  
-
-					
 					
 			}catch(Exception e) {
 				e.printStackTrace();

@@ -43,6 +43,26 @@ import jakarta.servlet.http.HttpServletResponse;
 					
 					pw.println("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>");
 
+					PrintWriter out = response.getWriter();
+
+					out.println("<head>");
+					out.println("<meta charset=\"UTF-8\">");
+					out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
+					out.println("<title>Docalendar Admin</title>");
+					out.println("<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">");
+					out.println("</head>");
+					out.println("<body>");
+					
+					out.println("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
+					out.println("<a class=\"navbar-brand\" href=\"#\">Docalendar Admin</a>");
+					out.println("<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">");
+					out.println("<span class=\"navbar-toggler-icon\"></span>");
+					out.println("</button>");
+					out.println("<div class=\"collapse navbar-collapse d-flex flex-row-reverse\" id=\"navbarNav\">");
+					out.println("<ul class=\"navbar-nav\">");
+					out.println("<li class=\"nav-item\">");
+					out.println("<a class=\"nav-link\" href=\"./index.jsp\">Log out</a>");
+
 				java.sql.ResultSet rs = ps.executeQuery();
 				 pw.println("<table class='table table-striped table-hover table-bordered table-responsive'>");
 					pw.println("<thead>");
@@ -74,6 +94,8 @@ import jakarta.servlet.http.HttpServletResponse;
 				}
 				pw.println("</tbody>");
 				pw.println("</table>");
+				out.println("</body>");
+        		out.println("</html>");
 				
 			}catch(Exception e) {
 				e.printStackTrace();
